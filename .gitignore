@@ -22,6 +22,9 @@ cache/
 artifacts/
 dist/
 .foundry/
+broadcast/
+forge-artifacts/
+coverage/
 
 # ────────────────────────────────
 # PYTHON
@@ -35,6 +38,7 @@ __pycache__/
 # ────────────────────────────────
 reports/*.pdf
 reports/*.md
+reports/**/*.html
 !reports/templates/
 
 # ────────────────────────────────
@@ -57,7 +61,12 @@ yarn-debug.log
 yarn-error.log
 
 # ────────────────────────────────
+# TYPESCRIPT / JS
+# ────────────────────────────────
+*.tsbuildinfo
+
+# ────────────────────────────────
 # PERSONAL NOTES
 # ────────────────────────────────
-notes.md
-TODO.md
+notes/
+

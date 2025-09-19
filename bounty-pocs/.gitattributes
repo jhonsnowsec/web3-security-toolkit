@@ -1,0 +1,29 @@
+# ────────────────────────────────
+# EOL NORMALIZATION
+# ────────────────────────────────
+* text=auto eol=lf
+
+# ────────────────────────────────
+# LANGUAGE OVERRIDES
+# ────────────────────────────────
+*.sol linguist-language=Solidity
+*.t.sol linguist-language=Solidity
+*.sh linguist-language=Shell
+*.py linguist-language=Python
+
+# ────────────────────────────────
+# BINARY FILES (no diff)
+# ────────────────────────────────
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.key binary
+*.pem binary
+
+# ────────────────────────────────
+# BUILD OUTPUTS (mark as generated)
+# ────────────────────────────────
+out/* linguist-generated
+cache/* linguist-generated
+artifacts/* linguist-generated

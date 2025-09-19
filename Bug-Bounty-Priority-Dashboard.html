@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Bug Bounty Hunter Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .targets-container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .target-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 150px 150px 150px 100px;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .target-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(10px);
+        }
+
+        .target-card.critical {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 20px rgba(255,107,107,0.3);
+        }
+
+        .target-card.high {
+            border-color: #feca57;
+        }
+
+        .target-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .target-chain {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 3px;
+        }
+
+        .priority-badge {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .priority-badge.critical {
+            background: linear-gradient(135deg, #ee5a6f, #f29263);
+        }
+
+        .priority-badge.high {
+            background: linear-gradient(135deg, #f6d365, #fda085);
+        }
+
+        .priority-badge.medium {
+            background: linear-gradient(135deg, #5ee7df, #66a6ff);
+        }
+
+        .attack-vectors {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .attack-vectors h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .vector-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .vector-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #4ade80;
+            border-radius: 50%;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .risk-meter {
+            width: 100%;
+            height: 8px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .risk-fill {
+            height: 100%;
+            transition: width 0.5s;
+        }
+
+        .risk-fill.low { background: #4ade80; }
+        .risk-fill.medium { background: #facc15; }
+        .risk-fill.high { background: #f87171; }
+        .risk-fill.critical { background: #dc2626; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Bug Bounty Hunter Dashboard <span class="live-indicator"></span></h1>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">$170B+</div>
+                <div class="stat-label">Total TVL Monitored</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">13</div>
+                <div class="stat-label">Active Targets</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$10M</div>
+                <div class="stat-label">Max Single Bounty</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Critical Priority</div>
+            </div>
+        </div>
+
+        <div class="targets-container">
+            <h2>🔥 Priority Targets</h2>
+            
+            <!-- CRITICAL: Curve -->
+            <div class="target-card critical">
+                <div class="target-info">
+                    <h3>Curve Finance</h3>
+                    <div class="target-chain">Ethereum • $35B Q1 Volume</div>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$2.1B</span>
+                    <span class="metric-label">TVL</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$10M</span>
+                    <span class="metric-label">MAX BOUNTY</span>
+                </div>
+                <div class="metric">
+                    <div class="risk-meter">
+                        <div class="risk-fill critical" style="width: 95%"></div>
+                    </div>
+                    <span class="metric-label">Risk Score: 95</span>
+                </div>
+                <div class="priority-badge critical">CRITICAL</div>
+            </div>
+
+            <!-- CRITICAL: Wormhole -->
+            <div class="target-card critical">
+                <div class="target-info">
+                    <h3>Wormhole</h3>
+                    <div class="target-chain">Multichain • 40+ Networks</div>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$2.6B</span>
+                    <span class="metric-label">Bridged TVL</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$10M</span>
+                    <span class="metric-label">MAX BOUNTY</span>
+                </div>
+                <div class="metric">
+                    <div class="risk-meter">
+                        <div class="risk-fill critical" style="width: 90%"></div>
+                    </div>
+                    <span class="metric-label">Risk Score: 90</span>
+                </div>
+                <div class="priority-badge critical">CRITICAL</div>
+            </div>
+
+            <!-- CRITICAL: MakerDAO -->
+            <div class="target-card critical">
+                <div class="target-info">
+                    <h3>MakerDAO</h3>
+                    <div class="target-chain">Ethereum • DAI Stablecoin</div>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$5B</span>
+                    <span class="metric-label">DAI Supply</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$10M</span>
+                    <span class="metric-label">MAX BOUNTY</span>
+                </div>
+                <div class="metric">
+                    <div class="risk-meter">
+                        <div class="risk-fill critical" style="width: 88%"></div>
+                    </div>
+                    <span class="metric-label">Risk Score: 88</span>
+                </div>
+                <div class="priority-badge critical">CRITICAL</div>
+            </div>
+
+            <!-- HIGH: Aave -->
+            <div class="target-card high">
+                <div class="target-info">
+                    <h3>Aave</h3>
+                    <div class="target-chain">Ethereum • DeFi Lending Leader</div>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$47B</span>
+                    <span class="metric-label">TVL</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$2M</span>
+                    <span class="metric-label">Max Bounty</span>
+                </div>
+                <div class="metric">
+                    <div class="risk-meter">
+                        <div class="risk-fill high" style="width: 75%"></div>
+                    </div>
+                    <span class="metric-label">Risk Score: 75</span>
+                </div>
+                <div class="priority-badge high">HIGH</div>
+            </div>
+
+            <!-- HIGH: Lido -->
+            <div class="target-card high">
+                <div class="target-info">
+                    <h3>Lido</h3>
+                    <div class="target-chain">Ethereum • 35% of Staked ETH</div>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$35B</span>
+                    <span class="metric-label">Staked ETH</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">$2M</span>
+                    <span class="metric-label">Max Bounty</span>
+                </div>
+                <div class="metric">
+                    <div class="risk-meter">
+                        <div class="risk-fill high" style="width: 70%"></div>
+                    </div>
+                    <span class="metric-label">Risk Score: 70</span>
+                </div>
+                <div class="priority-badge high">HIGH</div>
+            </div>
+
+            <div class="attack-vectors">
+                <h4>📍 Top Attack Vectors to Focus:</h4>
+                <div class="vector-list">
+                    <span class="vector-tag">Oracle Manipulation</span>
+                    <span class="vector-tag">Flash Loan Exploits</span>
+                    <span class="vector-tag">Bridge Message Replay</span>
+                    <span class="vector-tag">Governance Attacks</span>
+                    <span class="vector-tag">Reentrancy</span>
+                    <span class="vector-tag">Price Manipulation</span>
+                    <span class="vector-tag">Liquidation Bypass</span>
+                    <span class="vector-tag">Signature Forgery</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate risk meters on load
+        setTimeout(() => {
+            document.querySelectorAll('.risk-fill').forEach(el => {
+                el.style.transition = 'width 1s ease-out';
+            });
+        }, 100);
+
+        // Add hover effects
+        document.querySelectorAll('.target-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.cursor = 'pointer';
+            });
+        });
+
+        // Simulate live updates
+        setInterval(() => {
+            const indicators = document.querySelectorAll('.live-indicator');
+            indicators.forEach(ind => {
+                ind.style.background = '#' + Math.floor(Math.random()*16777215).toString(16);
+            });
+        }, 5000);
+    </script>
+</body>
+</html>

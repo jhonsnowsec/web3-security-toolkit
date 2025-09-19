@@ -1,0 +1,48 @@
+name: Recon Pipeline
+
+on:
+  schedule:
+    - cron: "0 12 * * *"   # manhã (09h BRT) - CORRIGIDO: adicionado espaço
+    - cron: "0 18 * * *"   # tarde (15h BRT) - CORRIGIDO: adicionado espaço
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  recon:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install pyyaml
+          sudo apt-get update && sudo apt-get install -y jq make
+
+      - name: Run recon pipeline
+        run: |
+          # Define variáveis de ambiente caso necessário
+          export PYTHONPATH="${GITHUB_WORKSPACE}/bounty-pocs/recon/scripts:${PYTHONPATH:-}"
+          make recon
+
+      - name: Commit updated JSONs
+        run: |
+          git config user.name "Recon Bot"
+          git config user.email "recon-bot@users.noreply.github.com"
+
+          if ! git diff --quiet bounty-pocs/recon/*.json; then
+            git add bounty-pocs/recon/*.json
+            git commit -m "chore(recon): update enriched targets and programs [skip ci]"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
+          else
+            echo "No changes in recon data, skipping commit."
+          fi

@@ -1,0 +1,14 @@
+[profile.default]
+src = "src"
+test = "bounty-pocs/test"
+out = "out"
+libs = ["lib"]
+
+remappings = [
+  "forge-std/=lib/forge-std/src/"
+]
+
+[rpc_endpoints]
+mainnet = "${RPC_MAINNET}"
+optimism = "${RPC_OPTIMISM}"
+arbitrum = "${RPC_ARBITRUM}"

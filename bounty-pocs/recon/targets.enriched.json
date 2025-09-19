@@ -1,0 +1,52 @@
+{
+  "generated_at": 1758196976,
+  "generated_at_iso": "2025-09-18T12:02:56Z",
+  "stats": {
+    "count_targets": 4,
+    "count_high_priority": 3,
+    "count_medium_priority": 1,
+    "count_low_priority": 0,
+    "total_tvl_usd": 10825000000.0
+  },
+  "targets": [
+    {
+      "name": "Aave",
+      "chain": "ethereum",
+      "tvl_usd": 8000000000.0,
+      "bounty_url": "https://immunefi.com/bounty/aave",
+      "last_audit": "2024-07-10",
+      "rpc_url": "https://eth.llamarpc.com",
+      "notes": "Lending protocol, sensível a oráculos.  Prioridade máxima.\n",
+      "priority": "HIGH"
+    },
+    {
+      "name": "Curve",
+      "chain": "ethereum",
+      "tvl_usd": 2200000000.0,
+      "bounty_url": "https://immunefi.com/bounty/curve",
+      "last_audit": "2023-12-15",
+      "rpc_url": "https://rpc.ankr.com/eth",
+      "notes": "AMM estável. Foco em manipulação de preço  e reentrancy cross-function.\n",
+      "priority": "HIGH"
+    },
+    {
+      "name": "Wormhole",
+      "chain": "solana",
+      "tvl_usd": 600000000.0,
+      "bounty_url": "https://immunefi.com/bounty/wormhole",
+      "last_audit": "2024-05-22",
+      "rpc_url": "https://api.mainnet-beta.solana.com",
+      "notes": "Bridge cross-chain. Possíveis falhas de  verificação de assinatura.\n",
+      "priority": "HIGH"
+    },
+    {
+      "name": "Gearbox",
+      "chain": "ethereum",
+      "tvl_usd": 25000000.0,
+      "bounty_url": "https://immunefi.com/bug-bounty/gearbox",
+      "last_audit": "2024-08-15",
+      "rpc_url": "${RPC_MAINNET}",
+      "priority": "MEDIUM"
+    }
+  ]
+}

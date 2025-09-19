@@ -1,0 +1,320 @@
+# ═══════════════════════════════════════
+# TARGETS ATUALIZADOS - SETEMBRO 2025
+# ═══════════════════════════════════════
+# Dados reais de TVL e priorização baseada
+# em recompensas máximas do Immunefi
+# ═══════════════════════════════════════
+
+- name: Aave
+  chain: ethereum
+  tvl_usd: 47000000000  # $47B - Líder absoluto DeFi
+  bounty_url: "https://immunefi.com/bounty/aave"
+  max_bounty_usd: 2000000  # $2M máximo
+  last_audit: "2025-07-15"
+  rpc_url: "${RPC_MAINNET}"
+  contracts:
+    lending_pool_v3: "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2"
+    pool_data_provider: "0x7B4EB56E7CD4b454BA8ff71E4518426369a138a3"
+    price_oracle: "0x54586bE62E3c3580375aE3723C145253060Ca0C2"
+  attack_vectors:
+    - "Oracle manipulation via flash loans"
+    - "Interest rate calculation overflow"
+    - "Liquidation mechanism bypass"
+    - "Cross-chain message replay"
+  notes: |
+    PRIORIDADE MÁXIMA. $47B TVL com 60% do market share de lending.
+    V4 chegando com Liquidity Hubs - novos vetores de ataque.
+
+- name: Curve
+  chain: ethereum
+  tvl_usd: 2100000000  # $2.1B
+  bounty_url: "https://immunefi.com/bounty/curve"
+  max_bounty_usd: 10000000  # $10M máximo (!!)
+  last_audit: "2024-12-15"
+  rpc_url: "${RPC_MAINNET}"
+  contracts:
+    tricrypto2: "0xD51a44d3FaE010294C616388b506AcdA1bfAAE46"
+    steth_eth: "0xDC24316b9AE028F1497c275EB9192a3Ea0f67022"
+    3pool: "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7"
+    factory_v2: "0xF18056Bbd320E96A48e3Fbf8bC061322531aac99"
+  attack_vectors:
+    - "AMM price manipulation"
+    - "Reentrancy in add_liquidity"
+    - "Virtual price inflation"
+    - "Admin function misuse"
+    - "crvUSD depeg exploit"
+  notes: |
+    BOUNTY MÁXIMA $10M! Volume Q1/2025: $35B.
+    crvUSD com $160M circulando. Foco em LlamaLend.
+
+- name: Wormhole
+  chain: multichain
+  tvl_usd: 2600000000  # $2.6B bridged
+  bounty_url: "https://immunefi.com/bounty/wormhole"
+<<<<<<< HEAD
+  max_bounty_usd: 10000000  # $10M máximo
+  last_audit: "2025-06-30"
+  rpc_url: "${RPC_MAINNET}"
+  contracts:
+    core_bridge_eth: "0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B"
+    token_bridge_eth: "0x3ee18B2214AFF97000D974cf647E7C347E8fa585"
+    nft_bridge_eth: "0x6FFd7EdE62328b3Af38FCD61461Bbfc52F5651fE"
+  chains_supported:
+    - ethereum
+    - solana
+    - arbitrum
+    - optimism
+    - base
+    - sui
+    - aptos
+    - algorand
+    - stacks  # Nova integração
+  attack_vectors:
+    - "Guardian signature forgery"
+    - "Message replay across chains"
+    - "Double spend via race condition"
+    - "NTT implementation bugs"
+    - "MultiGov voting manipulation"
+  notes: |
+    COMPLEXIDADE EXTREMA. 40+ chains, 1B+ mensagens.
+    W 2.0 com 4% yield - novo vetor econômico.
+
+- name: Arbitrum
+  chain: arbitrum
+  tvl_usd: 15000000000  # $15B L2 líder
+  bounty_url: "https://immunefi.com/bounty/arbitrum"
+  max_bounty_usd: 2000000
+  last_audit: "2025-05-20"
+  rpc_url: "${RPC_ARBITRUM}"
+  contracts:
+    sequencer: "0x1c479675ad559DC151F6Ec7ed3FbF8ceE79582B6"
+    rollup_core: "0x5eF0D09d1E6204141B4d37530808eD19f60FBa35"
+    outbox: "0x0B9857ae2D4A3DBe74ffE1d7DF045bb7F96E4840"
+  attack_vectors:
+    - "Sequencer censorship"
+    - "Force inclusion bypass"
+    - "Challenge period manipulation"
+    - "L1→L2 message forgery"
+  notes: |
+    L2 com maior TVL. Nitro stack = superfície nova.
+
+- name: Lido
+  chain: ethereum
+  tvl_usd: 35000000000  # $35B staked ETH
+  bounty_url: "https://immunefi.com/bounty/lido"
+  max_bounty_usd: 2000000
+  last_audit: "2025-08-01"
+  rpc_url: "${RPC_MAINNET}"
+  contracts:
+    steth: "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84"
+    wsteth: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0"
+    withdrawal_queue: "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1"
+    oracle: "0x442af784A788A5bd6F42A01Ebe9F287a871243fb"
+  attack_vectors:
+    - "Oracle report manipulation"
+    - "Withdrawal queue DoS"
+    - "Slashing bypass"
+    - "Node operator collusion"
+  notes: |
+    35% de todo ETH staked. V2 com DVT chegando.
+
+- name: MakerDAO
+  chain: ethereum
+  tvl_usd: 5000000000  # $5B DAI supply
+  bounty_url: "https://immunefi.com/bounty/makerdao"
+  max_bounty_usd: 10000000  # $10M!!
+  last_audit: "2025-07-01"
+  rpc_url: "${RPC_MAINNET}"
+  contracts:
+    vat: "0x35D1b3F3D7966A1DFe207aa4514C12a259A0492B"
+    pot: "0x197E90f9FAD81970bA7976f33CbD77088E5D7cf7"
+    jug: "0x19c0976f590D67707E62397C87829d896Dc0f1F1"
+    end: "0xBB856d1742fD182a90239D7AE85706C2FE4e5922"
+  attack_vectors:
+    - "Emergency shutdown bypass"
+    - "Collateral price manipulation"
+    - "Debt ceiling overflow"
+    - "Flash mint exploitation"
+    - "Governance attack via MKR"
+  notes: |
+    DAI = base de DeFi. Spark Protocol integrado.
+    EndGame plan = novos riscos.
+
+- name: Compound
+  chain: ethereum
+  tvl_usd: 2000000000  # $2B
+  bounty_url: "https://immunefi.com/bounty/compound"
+  max_bounty_usd: 1000000
+  last_audit: "2025-06-15"
+  rpc_url: "${RPC_MAINNET}"
+  contracts:
+    comptroller_v3: "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B"
+    comet_usdc: "0xc3d688B66703497DAA19211EEdff47f25384cdc3"
+    price_feed: "0x6D2299C48a8dD07a872FDd0F8233924872Ad1071"
+  attack_vectors:
+    - "Interest rate model exploit"
+    - "Liquidation incentive manipulation"
+    - "Oracle deviation attack"
+    - "Governance proposal injection"
+  notes: |
+    V3 (Comet) = nova arquitetura. Robert Leshner voltou.
+
+- name: Uniswap
+  chain: multichain
+  tvl_usd: 4000000000  # $4B liquidity
+  bounty_url: "https://immunefi.com/bounty/uniswap"
+  max_bounty_usd: 2250000
+  last_audit: "2025-04-20"
+  rpc_url: "${RPC_MAINNET}"
+  contracts:
+    v3_factory: "0x1F98431c8aD98523631AE4a59f267346ea31F984"
+    v3_router: "0xE592427A0AEce92De3Edee1F18E0157C05861564"
+    v4_core: "0xTBD"  # Soon™
+    universal_router: "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD"
+  attack_vectors:
+    - "Tick manipulation"
+    - "Flash loan sandwich"
+    - "Hook malicious implementation"
+    - "Permit2 signature replay"
+  notes: |
+    V4 com hooks = game changer. $1T+ volume histórico.
+
+- name: Optimism
+  chain: optimism
+  tvl_usd: 7000000000  # $7B
+  bounty_url: "https://immunefi.com/bounty/optimism"
+  max_bounty_usd: 2000000
+  last_audit: "2025-07-30"
+  rpc_url: "${RPC_OPTIMISM}"
+  contracts:
+    l2_output_oracle: "0xdfe97868233d1aa22e815a266982f2cf17685a27"
+    l1_cross_domain: "0x25ace71c97B33Cc4729CF772ae268934F7ab5fA1"
+    sequencer_fee_vault: "0x4200000000000000000000000000000000000011"
+  attack_vectors:
+    - "Output root manipulation"
+    - "Withdrawal proof forgery"
+    - "Fault proof challenge bypass"
+    - "Sequencer key compromise"
+  notes: |
+    Superchain = 10+ chains. Fault proofs live.
+
+- name: Base
+  chain: base
+  tvl_usd: 3000000000  # $3B
+  bounty_url: "https://immunefi.com/bounty/base"
+  max_bounty_usd: 1000000
+  last_audit: "2025-08-15"
+  rpc_url: "${RPC_BASE}"
+  contracts:
+    l1_portal: "0x49048044D57e1C92A77f79988d21Fa8fAF74E97e"
+    l2_output_oracle: "0x56315b90c40730925ec5485cf004d835058518A0"
+  attack_vectors:
+    - "Coinbase sequencer attack"
+    - "L1 portal reentrancy"
+    - "Output submission DoS"
+  notes: |
+    Coinbase backing = institutional target.
+
+# ═══════════════════════════════════════
+# EMERGING HIGH-VALUE TARGETS
+# ═══════════════════════════════════════
+
+- name: EigenLayer
+  chain: ethereum
+  tvl_usd: 12000000000  # $12B restaked
+  bounty_url: "https://immunefi.com/bounty/eigenlayer"
+  max_bounty_usd: 2000000
+  last_audit: "2025-09-01"
+  rpc_url: "${RPC_MAINNET}"
+  attack_vectors:
+    - "Slashing condition bypass"
+    - "Operator collusion"
+    - "AVS verification failure"
+  notes: |
+    Restaking = risco multiplicado. 200+ AVS soon.
+
+- name: Pendle
+  chain: multichain
+  tvl_usd: 2500000000  # $2.5B
+  bounty_url: "https://immunefi.com/bounty/pendle"
+  max_bounty_usd: 1000000
+  last_audit: "2025-06-01"
+  rpc_url: "${RPC_MAINNET}"
+  attack_vectors:
+    - "Yield stripping exploit"
+    - "AMM time-decay manipulation"
+    - "PT/YT price divergence attack"
+  notes: |
+    Yield trading complexo. Maturity = flash crash risk.
+
+- name: Blast
+  chain: blast
+  tvl_usd: 1500000000  # $1.5B
+  bounty_url: "https://immunefi.com/bounty/blast"
+  max_bounty_usd: 1000000
+  last_audit: "2025-05-15"
+  rpc_url: "${RPC_BLAST}"
+  attack_vectors:
+    - "Native yield calculation error"
+    - "Bridge fund lock bypass"
+    - "Sequencer manipulation"
+  notes: |
+    L2 com yield nativo. Pacman = marketing genius.
+
+# ═══════════════════════════════════════
+# METADATA
+# ═══════════════════════════════════════
+# Last Updated: 2025-09-18
+# Total Targets: 13
+# Combined TVL: $170B+
+# Max Single Bounty: $10M (Curve, Wormhole, MakerDAO)
+# ═══════════════════════════════════════
+=======
+  last_audit: "2024-05-22"
+  rpc_url: "https://api.mainnet-beta.solana.com"
+  notes: >
+    Bridge cross-chain. Possíveis falhas de 
+    verificação de assinatura.
+    
+- name: Gearbox
+  chain: ethereum
+  tvl_usd: 25000000
+  bounty_url: https://immunefi.com/bug-bounty/gearbox
+  last_audit: "2024-08-15"
+  rpc_url: ${RPC_MAINNET}
+
+>>>>>>> 4453a03fd14abdb2cc344ad4956e2228948efdc9
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 🔥 ACTIVE COMPETITIONS - HIGH PRIORITY
+# ═══════════════════════════════════════════════════════════════════════════════
+
+- name: Flare FAssets Mitigation
+  chain: flare
+  tvl_usd: 0  # Pre-mainnet competition
+  bounty_url: "https://immunefi.com/audit-competition/flare-fassets-mitigation-audit/information/"
+  max_bounty_usd: 25000  # $25k USD pool
+  last_audit: "2025-09-18"
+  rpc_url: "https://coston-api.flare.network/ext/bc/C/rpc"
+  contracts:
+    asset_manager_proxy: "TBD"  # Check latest Coston deployment
+    core_vault_facet: "TBD"     # New v1.1 functionality
+    collateral_pool: "TBD"
+    xrp_payment_verifier: "TBD"
+  attack_vectors:
+    - "Core Vault accounting bypass"
+    - "XRP payment proof forgery"
+    - "Collateral calculation overflow"
+    - "Multisig authorization bypass"
+    - "Liquidation timing manipulation" 
+    - "Reentrancy in new Core Vault"
+    - "XRP partial payment parsing"
+    - "Payment proof replay attacks"
+  priority: "CRITICAL"  # Active competition
+  competition_type: "mitigation_audit"
+  deadline: "TBD"  # Check Immunefi for exact deadline
+  notes: |
+    🔥 ACTIVE MITIGATION AUDIT - Focus on bugs in FIXES from original competition.
+    Scope: FXRP only, Core Vault v1.1 new functionality.
+    Requirements: Runnable PoCs, use Discord for communication.
+    Strategy: Analyze recent commits, focus on fix-introduced bugs.

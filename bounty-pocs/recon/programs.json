@@ -1,24 +1,154 @@
 {
-  "generated_at": 1757865407,
-  "generated_at_iso": "2025-09-14T15:56:47Z",
+  "generated_at": 1758254076,
+  "generated_at_iso": "2025-09-19T03:54:36+00:00",
   "stats": {
-    "count_targets": 4,
-    "count_high_priority": 3,
-    "count_medium_priority": 1,
-    "count_low_priority": 0,
-    "total_tvl_usd": 10825000000.0,
-    "programs_count": 4
+    "count_targets": 14,
+    "count_critical": 8,
+    "count_high": 5,
+    "count_medium": 0,
+    "count_low": 1,
+    "total_tvl_usd": 161684215030.81464,
+    "total_tvl_formatted": "$161.68B",
+    "total_max_bounty_usd": 46275000,
+    "total_max_bounty_formatted": "$46.27M",
+    "chains": {
+      "ethereum": 6,
+      "multichain": 3,
+      "arbitrum": 1,
+      "optimism": 1,
+      "base": 1,
+      "blast": 1,
+      "flare": 1
+    },
+    "top_3_by_tvl": [
+      "Aave",
+      "Lido",
+      "EigenLayer"
+    ],
+    "top_3_by_bounty": [
+      {
+        "name": "MakerDAO",
+        "chain": "ethereum",
+        "tvl_usd": 5000000000,
+        "bounty_url": "https://immunefi.com/bounty/makerdao",
+        "max_bounty_usd": 10000000,
+        "last_audit": "2025-07-01",
+        "rpc_url": "${RPC_MAINNET}",
+        "contracts": {
+          "vat": "0x35D1b3F3D7966A1DFe207aa4514C12a259A0492B",
+          "pot": "0x197E90f9FAD81970bA7976f33CbD77088E5D7cf7",
+          "jug": "0x19c0976f590D67707E62397C87829d896Dc0f1F1",
+          "end": "0xBB856d1742fD182a90239D7AE85706C2FE4e5922"
+        },
+        "attack_vectors": [
+          "Emergency shutdown bypass",
+          "Collateral price manipulation",
+          "Debt ceiling overflow",
+          "Flash mint exploitation",
+          "Governance attack via MKR"
+        ],
+        "notes": "DAI = base de DeFi. Spark Protocol integrado.\nEndGame plan = novos riscos.\n",
+        "priority": "CRITICAL",
+        "tvl_formatted": "$5.00B",
+        "max_bounty_formatted": "$10.00M",
+        "risk_score": 100
+      },
+      {
+        "name": "Wormhole",
+        "chain": "multichain",
+        "tvl_usd": 2600000000,
+        "bounty_url": "https://immunefi.com/bounty/wormhole",
+        "max_bounty_usd": 10000000,
+        "last_audit": "2025-06-30",
+        "rpc_url": "${RPC_MAINNET}",
+        "contracts": {
+          "core_bridge_eth": "0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B",
+          "token_bridge_eth": "0x3ee18B2214AFF97000D974cf647E7C347E8fa585",
+          "nft_bridge_eth": "0x6FFd7EdE62328b3Af38FCD61461Bbfc52F5651fE"
+        },
+        "chains_supported": [
+          "ethereum",
+          "solana",
+          "arbitrum",
+          "optimism",
+          "base",
+          "sui",
+          "aptos",
+          "algorand",
+          "stacks"
+        ],
+        "attack_vectors": [
+          "Guardian signature forgery",
+          "Message replay across chains",
+          "Double spend via race condition",
+          "NTT implementation bugs",
+          "MultiGov voting manipulation"
+        ],
+        "notes": "COMPLEXIDADE EXTREMA. 40+ chains, 1B+ mensagens.\nW 2.0 com 4% yield - novo vetor econômico.\n",
+        "priority": "CRITICAL",
+        "tvl_formatted": "$2.60B",
+        "max_bounty_formatted": "$10.00M",
+        "risk_score": 100
+      },
+      {
+        "name": "Curve",
+        "chain": "ethereum",
+        "tvl_usd": 2052659971.0049207,
+        "bounty_url": "https://immunefi.com/bounty/curve",
+        "max_bounty_usd": 10000000,
+        "last_audit": "2024-12-15",
+        "rpc_url": "${RPC_MAINNET}",
+        "contracts": {
+          "tricrypto2": "0xD51a44d3FaE010294C616388b506AcdA1bfAAE46",
+          "steth_eth": "0xDC24316b9AE028F1497c275EB9192a3Ea0f67022",
+          "3pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+          "factory_v2": "0xF18056Bbd320E96A48e3Fbf8bC061322531aac99"
+        },
+        "attack_vectors": [
+          "AMM price manipulation",
+          "Reentrancy in add_liquidity",
+          "Virtual price inflation",
+          "Admin function misuse",
+          "crvUSD depeg exploit"
+        ],
+        "notes": "BOUNTY MÁXIMA $10M! Volume Q1/2025: $35B.\ncrvUSD com $160M circulando. Foco em LlamaLend.\n",
+        "tvl_source": "defillama_api",
+        "tvl_updated_at": "2025-09-19T03:54:36.830312",
+        "tvl_change_pct": -2.25,
+        "tvl_change_formatted": "-2.3%",
+        "priority": "CRITICAL",
+        "tvl_formatted": "$2.05B",
+        "max_bounty_formatted": "$10.00M",
+        "risk_score": 100
+      }
+    ],
+    "programs_count": 14
   },
   "targets": [
     {
       "name": "Aave",
       "chain": "ethereum",
-      "tvl_usd": 8000000000.0,
+      "tvl_usd": 47000000000,
       "bounty_url": "https://immunefi.com/bounty/aave",
-      "last_audit": "2024-07-10",
-      "rpc_url": "https://eth.llamarpc.com",
-      "notes": "Lending protocol, sensível a oráculos.  Prioridade máxima.\n",
-      "priority": "HIGH",
+      "max_bounty_usd": 2000000,
+      "last_audit": "2025-07-15",
+      "rpc_url": "${RPC_MAINNET}",
+      "contracts": {
+        "lending_pool_v3": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+        "pool_data_provider": "0x7B4EB56E7CD4b454BA8ff71E4518426369a138a3",
+        "price_oracle": "0x54586bE62E3c3580375aE3723C145253060Ca0C2"
+      },
+      "attack_vectors": [
+        "Oracle manipulation via flash loans",
+        "Interest rate calculation overflow",
+        "Liquidation mechanism bypass",
+        "Cross-chain message replay"
+      ],
+      "notes": "PRIORIDADE MÁXIMA. $47B TVL com 60% do market share de lending.\nV4 chegando com Liquidity Hubs - novos vetores de ataque.\n",
+      "priority": "CRITICAL",
+      "tvl_formatted": "$47.00B",
+      "max_bounty_formatted": "$2.00M",
+      "risk_score": 60,
       "bounty": {
         "platform": "Immunefi",
         "range_usd": "variable",
@@ -26,29 +156,194 @@
       }
     },
     {
-      "name": "Curve",
+      "name": "Lido",
       "chain": "ethereum",
-      "tvl_usd": 2200000000.0,
-      "bounty_url": "https://immunefi.com/bounty/curve",
-      "last_audit": "2023-12-15",
-      "rpc_url": "https://rpc.ankr.com/eth",
-      "notes": "AMM estável. Foco em manipulação de preço  e reentrancy cross-function.\n",
-      "priority": "HIGH",
+      "tvl_usd": 39569567140.96996,
+      "bounty_url": "https://immunefi.com/bounty/lido",
+      "max_bounty_usd": 2000000,
+      "last_audit": "2025-08-01",
+      "rpc_url": "${RPC_MAINNET}",
+      "contracts": {
+        "steth": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+        "wsteth": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+        "withdrawal_queue": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+        "oracle": "0x442af784A788A5bd6F42A01Ebe9F287a871243fb"
+      },
+      "attack_vectors": [
+        "Oracle report manipulation",
+        "Withdrawal queue DoS",
+        "Slashing bypass",
+        "Node operator collusion"
+      ],
+      "notes": "35% de todo ETH staked. V2 com DVT chegando.\n",
+      "tvl_source": "defillama_api",
+      "tvl_updated_at": "2025-09-19T03:54:36.830368",
+      "tvl_change_pct": 13.06,
+      "tvl_change_formatted": "+13.1%",
+      "priority": "CRITICAL",
+      "tvl_formatted": "$39.57B",
+      "max_bounty_formatted": "$2.00M",
+      "risk_score": 60,
       "bounty": {
         "platform": "Immunefi",
         "range_usd": "variable",
-        "url": "https://immunefi.com/bounty/curve"
+        "url": "https://immunefi.com/bounty/lido"
+      }
+    },
+    {
+      "name": "EigenLayer",
+      "chain": "ethereum",
+      "tvl_usd": 19591744677.98806,
+      "bounty_url": "https://immunefi.com/bounty/eigenlayer",
+      "max_bounty_usd": 2000000,
+      "last_audit": "2025-09-01",
+      "rpc_url": "${RPC_MAINNET}",
+      "attack_vectors": [
+        "Slashing condition bypass",
+        "Operator collusion",
+        "AVS verification failure"
+      ],
+      "notes": "Restaking = risco multiplicado. 200+ AVS soon.\n",
+      "tvl_source": "defillama_api",
+      "tvl_updated_at": "2025-09-19T03:54:36.830410",
+      "tvl_change_pct": 63.26,
+      "tvl_change_formatted": "+63.3%",
+      "priority": "CRITICAL",
+      "tvl_formatted": "$19.59B",
+      "max_bounty_formatted": "$2.00M",
+      "risk_score": 50,
+      "bounty": {
+        "platform": "Immunefi",
+        "range_usd": "variable",
+        "url": "https://immunefi.com/bounty/eigenlayer"
+      }
+    },
+    {
+      "name": "Arbitrum",
+      "chain": "arbitrum",
+      "tvl_usd": 15000000000,
+      "bounty_url": "https://immunefi.com/bounty/arbitrum",
+      "max_bounty_usd": 2000000,
+      "last_audit": "2025-05-20",
+      "rpc_url": "${RPC_ARBITRUM}",
+      "contracts": {
+        "sequencer": "0x1c479675ad559DC151F6Ec7ed3FbF8ceE79582B6",
+        "rollup_core": "0x5eF0D09d1E6204141B4d37530808eD19f60FBa35",
+        "outbox": "0x0B9857ae2D4A3DBe74ffE1d7DF045bb7F96E4840"
+      },
+      "attack_vectors": [
+        "Sequencer censorship",
+        "Force inclusion bypass",
+        "Challenge period manipulation",
+        "L1→L2 message forgery"
+      ],
+      "notes": "L2 com maior TVL. Nitro stack = superfície nova.\n",
+      "priority": "CRITICAL",
+      "tvl_formatted": "$15.00B",
+      "max_bounty_formatted": "$2.00M",
+      "risk_score": 60,
+      "bounty": {
+        "platform": "Immunefi",
+        "range_usd": "variable",
+        "url": "https://immunefi.com/bounty/arbitrum"
+      }
+    },
+    {
+      "name": "Pendle",
+      "chain": "multichain",
+      "tvl_usd": 13370243240.8517,
+      "bounty_url": "https://immunefi.com/bounty/pendle",
+      "max_bounty_usd": 1000000,
+      "last_audit": "2025-06-01",
+      "rpc_url": "${RPC_MAINNET}",
+      "attack_vectors": [
+        "Yield stripping exploit",
+        "AMM time-decay manipulation",
+        "PT/YT price divergence attack"
+      ],
+      "notes": "Yield trading complexo. Maturity = flash crash risk.\n",
+      "tvl_source": "defillama_api",
+      "tvl_updated_at": "2025-09-19T03:54:36.830448",
+      "tvl_change_pct": 434.81,
+      "tvl_change_formatted": "+434.8%",
+      "priority": "CRITICAL",
+      "tvl_formatted": "$13.37B",
+      "max_bounty_formatted": "$1.00M",
+      "risk_score": 50,
+      "bounty": {
+        "platform": "Immunefi",
+        "range_usd": "variable",
+        "url": "https://immunefi.com/bounty/pendle"
+      }
+    },
+    {
+      "name": "MakerDAO",
+      "chain": "ethereum",
+      "tvl_usd": 5000000000,
+      "bounty_url": "https://immunefi.com/bounty/makerdao",
+      "max_bounty_usd": 10000000,
+      "last_audit": "2025-07-01",
+      "rpc_url": "${RPC_MAINNET}",
+      "contracts": {
+        "vat": "0x35D1b3F3D7966A1DFe207aa4514C12a259A0492B",
+        "pot": "0x197E90f9FAD81970bA7976f33CbD77088E5D7cf7",
+        "jug": "0x19c0976f590D67707E62397C87829d896Dc0f1F1",
+        "end": "0xBB856d1742fD182a90239D7AE85706C2FE4e5922"
+      },
+      "attack_vectors": [
+        "Emergency shutdown bypass",
+        "Collateral price manipulation",
+        "Debt ceiling overflow",
+        "Flash mint exploitation",
+        "Governance attack via MKR"
+      ],
+      "notes": "DAI = base de DeFi. Spark Protocol integrado.\nEndGame plan = novos riscos.\n",
+      "priority": "CRITICAL",
+      "tvl_formatted": "$5.00B",
+      "max_bounty_formatted": "$10.00M",
+      "risk_score": 100,
+      "bounty": {
+        "platform": "Immunefi",
+        "range_usd": "variable",
+        "url": "https://immunefi.com/bounty/makerdao"
       }
     },
     {
       "name": "Wormhole",
-      "chain": "solana",
-      "tvl_usd": 600000000.0,
+      "chain": "multichain",
+      "tvl_usd": 2600000000,
       "bounty_url": "https://immunefi.com/bounty/wormhole",
-      "last_audit": "2024-05-22",
-      "rpc_url": "https://api.mainnet-beta.solana.com",
-      "notes": "Bridge cross-chain. Possíveis falhas de  verificação de assinatura.\n",
-      "priority": "HIGH",
+      "max_bounty_usd": 10000000,
+      "last_audit": "2025-06-30",
+      "rpc_url": "${RPC_MAINNET}",
+      "contracts": {
+        "core_bridge_eth": "0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B",
+        "token_bridge_eth": "0x3ee18B2214AFF97000D974cf647E7C347E8fa585",
+        "nft_bridge_eth": "0x6FFd7EdE62328b3Af38FCD61461Bbfc52F5651fE"
+      },
+      "chains_supported": [
+        "ethereum",
+        "solana",
+        "arbitrum",
+        "optimism",
+        "base",
+        "sui",
+        "aptos",
+        "algorand",
+        "stacks"
+      ],
+      "attack_vectors": [
+        "Guardian signature forgery",
+        "Message replay across chains",
+        "Double spend via race condition",
+        "NTT implementation bugs",
+        "MultiGov voting manipulation"
+      ],
+      "notes": "COMPLEXIDADE EXTREMA. 40+ chains, 1B+ mensagens.\nW 2.0 com 4% yield - novo vetor econômico.\n",
+      "priority": "CRITICAL",
+      "tvl_formatted": "$2.60B",
+      "max_bounty_formatted": "$10.00M",
+      "risk_score": 100,
       "bounty": {
         "platform": "Immunefi",
         "range_usd": "variable",
@@ -56,20 +351,222 @@
       }
     },
     {
-      "name": "Gearbox",
+      "name": "Curve",
       "chain": "ethereum",
-      "tvl_usd": 25000000.0,
-      "bounty_url": "https://immunefi.com/bug-bounty/gearbox",
-      "last_audit": "2024-08-15",
+      "tvl_usd": 2052659971.0049207,
+      "bounty_url": "https://immunefi.com/bounty/curve",
+      "max_bounty_usd": 10000000,
+      "last_audit": "2024-12-15",
       "rpc_url": "${RPC_MAINNET}",
-      "priority": "MEDIUM",
+      "contracts": {
+        "tricrypto2": "0xD51a44d3FaE010294C616388b506AcdA1bfAAE46",
+        "steth_eth": "0xDC24316b9AE028F1497c275EB9192a3Ea0f67022",
+        "3pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "factory_v2": "0xF18056Bbd320E96A48e3Fbf8bC061322531aac99"
+      },
+      "attack_vectors": [
+        "AMM price manipulation",
+        "Reentrancy in add_liquidity",
+        "Virtual price inflation",
+        "Admin function misuse",
+        "crvUSD depeg exploit"
+      ],
+      "notes": "BOUNTY MÁXIMA $10M! Volume Q1/2025: $35B.\ncrvUSD com $160M circulando. Foco em LlamaLend.\n",
+      "tvl_source": "defillama_api",
+      "tvl_updated_at": "2025-09-19T03:54:36.830312",
+      "tvl_change_pct": -2.25,
+      "tvl_change_formatted": "-2.3%",
+      "priority": "CRITICAL",
+      "tvl_formatted": "$2.05B",
+      "max_bounty_formatted": "$10.00M",
+      "risk_score": 100,
       "bounty": {
         "platform": "Immunefi",
         "range_usd": "variable",
-        "url": "https://immunefi.com/bug-bounty/gearbox"
+        "url": "https://immunefi.com/bounty/curve"
+      }
+    },
+    {
+      "name": "Optimism",
+      "chain": "optimism",
+      "tvl_usd": 7000000000,
+      "bounty_url": "https://immunefi.com/bounty/optimism",
+      "max_bounty_usd": 2000000,
+      "last_audit": "2025-07-30",
+      "rpc_url": "${RPC_OPTIMISM}",
+      "contracts": {
+        "l2_output_oracle": "0xdfe97868233d1aa22e815a266982f2cf17685a27",
+        "l1_cross_domain": "0x25ace71c97B33Cc4729CF772ae268934F7ab5fA1",
+        "sequencer_fee_vault": "0x4200000000000000000000000000000000000011"
+      },
+      "attack_vectors": [
+        "Output root manipulation",
+        "Withdrawal proof forgery",
+        "Fault proof challenge bypass",
+        "Sequencer key compromise"
+      ],
+      "notes": "Superchain = 10+ chains. Fault proofs live.\n",
+      "priority": "HIGH",
+      "tvl_formatted": "$7.00B",
+      "max_bounty_formatted": "$2.00M",
+      "risk_score": 60,
+      "bounty": {
+        "platform": "Immunefi",
+        "range_usd": "variable",
+        "url": "https://immunefi.com/bounty/optimism"
+      }
+    },
+    {
+      "name": "Uniswap",
+      "chain": "multichain",
+      "tvl_usd": 4000000000,
+      "bounty_url": "https://immunefi.com/bounty/uniswap",
+      "max_bounty_usd": 2250000,
+      "last_audit": "2025-04-20",
+      "rpc_url": "${RPC_MAINNET}",
+      "contracts": {
+        "v3_factory": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+        "v3_router": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+        "v4_core": "0xTBD",
+        "universal_router": "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD"
+      },
+      "attack_vectors": [
+        "Tick manipulation",
+        "Flash loan sandwich",
+        "Hook malicious implementation",
+        "Permit2 signature replay"
+      ],
+      "notes": "V4 com hooks = game changer. $1T+ volume histórico.\n",
+      "priority": "HIGH",
+      "tvl_formatted": "$4.00B",
+      "max_bounty_formatted": "$2.25M",
+      "risk_score": 60,
+      "bounty": {
+        "platform": "Immunefi",
+        "range_usd": "variable",
+        "url": "https://immunefi.com/bounty/uniswap"
+      }
+    },
+    {
+      "name": "Base",
+      "chain": "base",
+      "tvl_usd": 3000000000,
+      "bounty_url": "https://immunefi.com/bounty/base",
+      "max_bounty_usd": 1000000,
+      "last_audit": "2025-08-15",
+      "rpc_url": "${RPC_BASE}",
+      "contracts": {
+        "l1_portal": "0x49048044D57e1C92A77f79988d21Fa8fAF74E97e",
+        "l2_output_oracle": "0x56315b90c40730925ec5485cf004d835058518A0"
+      },
+      "attack_vectors": [
+        "Coinbase sequencer attack",
+        "L1 portal reentrancy",
+        "Output submission DoS"
+      ],
+      "notes": "Coinbase backing = institutional target.\n",
+      "priority": "HIGH",
+      "tvl_formatted": "$3.00B",
+      "max_bounty_formatted": "$1.00M",
+      "risk_score": 50,
+      "bounty": {
+        "platform": "Immunefi",
+        "range_usd": "variable",
+        "url": "https://immunefi.com/bounty/base"
+      }
+    },
+    {
+      "name": "Compound",
+      "chain": "ethereum",
+      "tvl_usd": 2000000000,
+      "bounty_url": "https://immunefi.com/bounty/compound",
+      "max_bounty_usd": 1000000,
+      "last_audit": "2025-06-15",
+      "rpc_url": "${RPC_MAINNET}",
+      "contracts": {
+        "comptroller_v3": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+        "comet_usdc": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+        "price_feed": "0x6D2299C48a8dD07a872FDd0F8233924872Ad1071"
+      },
+      "attack_vectors": [
+        "Interest rate model exploit",
+        "Liquidation incentive manipulation",
+        "Oracle deviation attack",
+        "Governance proposal injection"
+      ],
+      "notes": "V3 (Comet) = nova arquitetura. Robert Leshner voltou.\n",
+      "priority": "HIGH",
+      "tvl_formatted": "$2.00B",
+      "max_bounty_formatted": "$1.00M",
+      "risk_score": 60,
+      "bounty": {
+        "platform": "Immunefi",
+        "range_usd": "variable",
+        "url": "https://immunefi.com/bounty/compound"
+      }
+    },
+    {
+      "name": "Blast",
+      "chain": "blast",
+      "tvl_usd": 1500000000,
+      "bounty_url": "https://immunefi.com/bounty/blast",
+      "max_bounty_usd": 1000000,
+      "last_audit": "2025-05-15",
+      "rpc_url": "${RPC_BLAST}",
+      "attack_vectors": [
+        "Native yield calculation error",
+        "Bridge fund lock bypass",
+        "Sequencer manipulation"
+      ],
+      "notes": "L2 com yield nativo. Pacman = marketing genius.\n",
+      "priority": "HIGH",
+      "tvl_formatted": "$1.50B",
+      "max_bounty_formatted": "$1.00M",
+      "risk_score": 50,
+      "bounty": {
+        "platform": "Immunefi",
+        "range_usd": "variable",
+        "url": "https://immunefi.com/bounty/blast"
+      }
+    },
+    {
+      "name": "Flare FAssets Mitigation",
+      "chain": "flare",
+      "tvl_usd": 0,
+      "bounty_url": "https://immunefi.com/audit-competition/flare-fassets-mitigation-audit/information/",
+      "max_bounty_usd": 25000,
+      "last_audit": "2025-09-18",
+      "rpc_url": "https://coston-api.flare.network/ext/bc/C/rpc",
+      "contracts": {
+        "asset_manager_proxy": "TBD",
+        "core_vault_facet": "TBD",
+        "collateral_pool": "TBD",
+        "xrp_payment_verifier": "TBD"
+      },
+      "attack_vectors": [
+        "Core Vault accounting bypass",
+        "XRP payment proof forgery",
+        "Collateral calculation overflow",
+        "Multisig authorization bypass",
+        "Liquidation timing manipulation",
+        "Reentrancy in new Core Vault",
+        "XRP partial payment parsing",
+        "Payment proof replay attacks"
+      ],
+      "priority": "LOW",
+      "competition_type": "mitigation_audit",
+      "deadline": "TBD",
+      "notes": "ACTIVE MITIGATION AUDIT - Focus on bugs in FIXES from original competition.\nScope: FXRP only, Core Vault v1.1 new functionality.\nRequirements: Runnable PoCs, use Discord for communication.\nStrategy: Analyze recent commits, focus on fix-introduced bugs.\n",
+      "tvl_formatted": "$0.00",
+      "max_bounty_formatted": "$25.00K",
+      "risk_score": 80,
+      "bounty": {
+        "platform": "Immunefi",
+        "range_usd": "variable",
+        "url": "https://immunefi.com/audit-competition/flare-fassets-mitigation-audit/information/"
       }
     }
   ],
-  "programs_updated_at": 1757865407,
-  "programs_updated_at_iso": "2025-09-14T15:56:47Z"
+  "programs_updated_at": 1758254076,
+  "programs_updated_at_iso": "2025-09-19T03:54:36Z"
 }
